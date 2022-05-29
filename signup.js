@@ -165,20 +165,13 @@ function checkUsername(event){
 
 function registazione(event){
 
-    event.currentTarget.preventDefault();
     
-    dati= new FormData();
-    dati.append("username",username.value);
-    dati.append("nome",nome.value);
-    dati.append("cognome",cognome.value);
-    dati.append("email",email.value);
-    dati.append("password",password.value);
 
     fetch("signup.php",{
         method: 'POST',
         body:dati
 
-        }).then(onResponse)
+        })
         
 
            
@@ -194,6 +187,7 @@ function registazione(event){
 
 
 
+form2=document.querySelector('#form');
 const username=document.querySelector("#username");
 const nome=document.querySelector("#nome");
 const cognome=document.querySelector("#cognome");
@@ -218,5 +212,4 @@ avviso_cognome=document.createElement("p");
 avviso_email=document.createElement("p");
 avviso_password=document.createElement("p");
 avviso_password2=document.createElement("p");
-form2=document.querySelector('form-signup');
 form2.addEventListener('submit',registazione);

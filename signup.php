@@ -3,8 +3,10 @@
 session_start();
 
 
-if(!empty($_POST["username"]) && !empty($_POST["nome"])&& !isset($_POST["cognome"]) && !isset($_POST["email"])&&!isset($_POST["password"])){
+if(!empty($_POST["username"]) && !empty($_POST["nome"])&& !empty($_POST["cognome"]) && !empty($_POST["email"])&&!empty($_POST["password"])){
 
+    $error=array();
+    
     $conn=mysqli_connect("localhost","root","","Listen") or die( "Errore:".mysqli_connect_error());    
     $nome=mysqli_real_escape_string($conn, $_POST["nome"]);
     $cognome=mysqli_real_escape_string($conn, $_POST["cognome"]);
@@ -41,7 +43,7 @@ if(!empty($_POST["username"]) && !empty($_POST["nome"])&& !isset($_POST["cognome
 
 
     }
-
+    
     if(count($error)===0){
         
         $username= mysqli_real_escape_string($conn, $_POST["username"]);
@@ -70,11 +72,12 @@ if(!empty($_POST["username"]) && !empty($_POST["nome"])&& !isset($_POST["cognome
    
 
 
-else 
+else {
 echo "<h4 class='errore'>";
 echo "Credenziali non valide";
 echo "</h4>";
 
+}
 }
 
 
@@ -99,7 +102,7 @@ content="width=device-width, initial-scale=1">
 <body>
     <div>
         <h1>Listen</h1>
-    <form name='form-signup' method='post' action="signup.php">
+    <form id="form" name='form-signup' method='post' action="signup.php">
         <div id="div-username">
     <h3>Username</h3>
        <label><input id="username" type="text" name='username' placeholder="Insert username"></label>
